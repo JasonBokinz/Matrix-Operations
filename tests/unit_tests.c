@@ -58,8 +58,8 @@ bool areMatricesEqual(int** matrix1, int** matrix2, int rows, int cols) {
 Test(base_suite, SparseMatrix_full, .description="Full Sparse Matrix") {
     int** M = initializeMatrix(4, 2, (int[]){0,4,0,5,0,0,2,0});
     int** S_act = initializeMatrix(3, 4, (int[]){0,0,0,0,0,0,0,0,0,0,0,0});
-    int** S_exp = initializeMatrix(3, 4, (int[]){0,1,3,0,1,1,1,0,4,5,2,0});
-    int D[2] = {4,2};
+    int** S_exp = initializeMatrix(3, 4, (int[]){0,1,3,0,1,1,0,0,4,5,2,0});
+    int D[2] = {2,4};
     int ret_act = SparseMatrix(M, S_act, D);
     int ret_exp = 3;
     cr_expect_eq(ret_act, ret_exp, "Return value was %d, but it should have been %d.\n", ret_act, ret_exp);
@@ -87,15 +87,15 @@ Test(base_suite, addition_case_yes_valgrind) {
 }
 Test(base_suite, addition_case_no, .description="Matrices are compatible for addition, but not A. A also contains garbage values") {
     int** M = initializeMatrix(3, 2, (int[]){ 2, 3, 1, 3, 4, 5});
-    int** N = initializeMatrix(4, 2, (int[]){5, 6, 3, 3, 7, 2, 1,5});
+    int** N = initializeMatrix(3, 2, (int[]){3, 3, 7, 2, 1,5});
     int** A_act = initializeMatrix(3, 3, (int[]){5, 6, 0, 8, 5, 0, 5, 10, 0});
     int** A_exp = initializeMatrix(3, 3, (int[]){5, 6, 0, 8, 5, 0, 5, 10, 0});
-    int D[6] = {3,2,4,2,3,3};
+    int D[6] = {3,2,3,2,3,3};
     int ret_act = Addition(M, N, A_act, D);
     int ret_exp = 2;
     cr_expect_eq(ret_act, ret_exp, "Return value was %d, but it should have been %d.\n", ret_act, ret_exp);
     cr_assert(areMatricesEqual(A_act, A_exp, 3, 3), "Contents of matrix incorrect. See unit_tests.c for expected values.");
-    freeMatrix(3, M); freeMatrix(4, N); freeMatrix(3, A_act); freeMatrix(3, A_exp);
+    freeMatrix(3, M); freeMatrix(3, N); freeMatrix(3, A_act); freeMatrix(3, A_exp);
 }
 Test(base_suite, addition_case_no_valgrind) {
     assert_no_valgrind_errors(run_using_system("addition_case_no"));
@@ -151,11 +151,11 @@ Test(base_suite, multiplication_case_yes, .description="Matrices are compatible 
 Test(base_suite, multiplication_case_yes_valgrind) {
     assert_no_valgrind_errors(run_using_system("multiplication_case_yes"));
 }
-Test(base_suite, multiplication_case_yes_small, .description="Matrices are compatible for multiplicaiton, but A is small") {
+Test(base_suite, multiplication_case_no_small, .description="Matrices are incompatible for multiplicaiton, and A is small") {
     int** M = initializeMatrix(3, 2, (int[]){ 2, 3, 5, 4, 2, 3});
     int** N = initializeMatrix(3, 2, (int[]){3, 3, 7, 2, 1, 5});
     int** A_act = initializeMatrix(2, 2, (int[]){0, 0, 0, 0});
-    int** A_exp = initializeMatrix(2, 2, (int[]){0, 0, 0, 0});
+    int** A_exp = initializeMatrix(2, 2, (int[]){27, 12, 43, 23});
     int D[6] = {3,2,3,2,2,2};
     int ret_act = Multiplication(M, N, A_act, D);
     int ret_exp = -2;
