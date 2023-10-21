@@ -59,7 +59,7 @@ Test(base_suite, SparseMatrix_full, .description="Full Sparse Matrix") {
     int** M = initializeMatrix(4, 2, (int[]){0,4,0,5,0,0,2,0});
     int** S_act = initializeMatrix(3, 4, (int[]){0,0,0,0,0,0,0,0,0,0,0,0});
     int** S_exp = initializeMatrix(3, 4, (int[]){0,1,3,0,1,1,0,0,4,5,2,0});
-    int D[2] = {2,4};
+    int D[2] = {4,2};
     int ret_act = SparseMatrix(M, S_act, D);
     int ret_exp = 3;
     cr_expect_eq(ret_act, ret_exp, "Return value was %d, but it should have been %d.\n", ret_act, ret_exp);
