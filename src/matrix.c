@@ -50,11 +50,13 @@ int Addition(int** M, int** N, int** A, int* D){
             (*(*(A+i)+j)) = 0;
         }
     }
-    int row = min(min(yDimensionM, yDimensionN), yDimensionA);
-    int col = min(min(xDimensionM, xDimensionN), xDimensionA);
-    for (int i = 0; i < row; i++) {
-        for (int j = 0; j < col; j++) {
-            (*(*(A+i)+j)) = (*(*(M+i)+j)) + (*(*(N+i)+j));
+    // Add the two matrices and store the sum in A.
+    for (int i = 0; i < yDimensionA; i++) {
+        for (int j = 0; j < xDimensionA; j++) {
+            if ((i < yDimensionM) && (i < yDimensionN)
+            && (j < xDimensionM) && (j < xDimensionN)) {
+                (*(*(A+i)+j)) = (*(*(M+i)+j)) + (*(*(N+i)+j));
+            }
         }
     }
     // Potential Cases when M and N are compatible for matrix addition
@@ -94,24 +96,7 @@ int Multiplication(int** M, int** N, int** A, int* D){
     int yDimensionN = *D++, xDimensionN = *D++;
     int yDimensionA = *D++, xDimensionA = *D; 
 
-    // Initialize A with zero values
-    for (int i = 0; i < yDimensionA; i++) {
-        for (int j = 0; j < xDimensionA; j++) {
-            (*(*(A+i)+j)) = 0;
-        }
-    }
     // Multiply the two matrices M & N and store the product in A
-    // int row = min(yDimensionM, yDimensionA);
-    // int col = min(xDimensionN, xDimensionA);
-    // for (int i = 0; i < row; i++) {
-    //     for (int j = 0; j < col; j++) {
-    //         (*(*(A+i)+j)) = 0;
-    //         for (int k = 0; k < col; k++) {
-    //             (*(*(A+i)+j)) += (*(*(M+i)+k)) * (*(*(N+k)+j));
-    //         }
-    //     }
-    // }
-    //Filling the A matrix
     for (int i = 0; i < yDimensionA; i++) {
         for (int j = 0; j < xDimensionA; j++) {
             (*(*(A+i)+j)) = 0;
