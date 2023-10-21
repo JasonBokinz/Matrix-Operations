@@ -30,7 +30,7 @@ int SparseMatrix(int** M, int** S, int* D){
     }
     // Returns the number of non-zero values stored in the sparse.
     return nonZero;
-    abort();
+    //abort();
 }
 // Helper function used to find the minimum dimension
 int min(int x, int y) {
@@ -84,7 +84,7 @@ int Addition(int** M, int** N, int** A, int* D){
         return -2;
        }
     }
-    abort();
+    //abort();
 }
 // This method multiplies matrices M and N and stores the product matrix in A.
 // Returns an integer based on certain cases.
@@ -138,7 +138,7 @@ int Multiplication(int** M, int** N, int** A, int* D){
         return -2;
        }
     }
-    abort();
+    //abort();
 }
 // This method transposes matrix A and stores it in AT.
 // Returns an integer based on certain cases.
@@ -175,7 +175,7 @@ int Transpose(int** A, int** AT, int* D){
             return -1;
         }
     }
-    abort();
+    //abort();
 }
 
 // Helper functions for Testing
