@@ -1,7 +1,7 @@
 #include "../include/global.h"
 
 // This method will return the number of non-zero elements if the number of non-zero elements are equal to or less than m
-// S will store the sparse matrix of M if it exists
+// S will store the sparse matrix of M if it exists.
 int SparseMatrix(int** M, int** S, int* D){
     int nonZero = 0, yDimension = *D++, xDimension = *D;
     int maxDimension = (xDimension > yDimension) ? xDimension : yDimension;
