@@ -137,18 +137,14 @@ int Transpose(int** A, int** AT, int* D){
     // Store dimension value given to us from the D array
     int yDimensionA = *D++, xDimensionA = *D++;
     int yDimensionAT = *D++, xDimensionAT = *D;
-    // Initialize AT with zero values
-    for (int i = 0; i < yDimensionAT; i++) {
-        for (int j = 0; j < xDimensionAT; j++) {
-            (*(*(AT+i)+j)) = 0;
-        }
-    }
+
     // Transpose A values into AT
-    int row = min(yDimensionA, xDimensionAT);
-    int col = min(xDimensionA, yDimensionAT);
-    for (int i = 0; i < row; i++) {
-        for (int j = 0; j < col; j++) {
-            (*(*(AT+j)+i)) = (*(*(A+i)+j));
+    for (int i = 0; i < xDimensionAT; i++) {
+        for (int j = 0; j < yDimensionAT; j++) {
+            (*(*(AT+j)+i)) = 0;
+            if ((i < yDimensionA) && (j < xDimensionA)) {
+                (*(*(AT+j)+i)) = (*(*(A+i)+j));
+            }
         }
     }
     // If the dimension of A and AT are compatible
