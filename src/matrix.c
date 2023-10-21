@@ -44,15 +44,10 @@ int Addition(int** M, int** N, int** A, int* D){
     int yDimensionN = *D++, xDimensionN = *D++;
     int yDimensionA = *D++, xDimensionA = *D; 
 
-    // Initialize A with zero values
-    for (int i = 0; i < yDimensionA; i++) {
-        for (int j = 0; j < xDimensionA; j++) {
-            (*(*(A+i)+j)) = 0;
-        }
-    }
     // Add the two matrices and store the sum in A.
     for (int i = 0; i < yDimensionA; i++) {
         for (int j = 0; j < xDimensionA; j++) {
+            (*(*(A+i)+j)) = 0;
             if ((i < yDimensionM) && (i < yDimensionN)
             && (j < xDimensionM) && (j < xDimensionN)) {
                 (*(*(A+i)+j)) = (*(*(M+i)+j)) + (*(*(N+i)+j));
