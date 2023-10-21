@@ -94,31 +94,20 @@ int Multiplication(int** M, int** N, int** A, int* D){
     int yDimensionN = *D++, xDimensionN = *D++;
     int yDimensionA = *D++, xDimensionA = *D; 
 
-    // Initialize A with zero values
-    for (int i = 0; i < yDimensionA; i++) {
-        for (int j = 0; j < xDimensionA; j++) {
-            (*(*(A+i)+j)) = 0;
-        }
-    }
-    // Multiply the two matrices M & N and store the product in A
-    // int row = min(yDimensionM, yDimensionA);
-    // int col = min(xDimensionN, xDimensionA);
-    // for (int i = 0; i < row; i++) {
-    //     for (int j = 0; j < col; j++) {
+    // // Initialize A with zero values
+    // for (int i = 0; i < yDimensionA; i++) {
+    //     for (int j = 0; j < xDimensionA; j++) {
     //         (*(*(A+i)+j)) = 0;
-    //         for (int k = 0; k < col; k++) {
-    //             (*(*(A+i)+j)) += (*(*(M+i)+k)) * (*(*(N+k)+j));
-    //         }
     //     }
     // }
-    //Filling the A matrix
-    for (int i = 0; i < yDimensionA; i++) {
-        for (int j = 0; j < xDimensionA; j++) {
+    // Multiply the two matrices M & N and store the product in A
+    int row = min(yDimensionM, yDimensionA);
+    int col = min(xDimensionN, xDimensionA);
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
             (*(*(A+i)+j)) = 0;
-            if (i < yDimensionM && j < xDimensionN) {
-                for (int k = 0; k < yDimensionM; k++) {
-                    (*(*(A+i)+j)) += (*(*(M+i)+k)) * (*(*(N+k)+j));
-                }
+            for (int k = 0; k < col; k++) {
+                (*(*(A+i)+j)) += (*(*(M+i)+k)) * (*(*(N+k)+j));
             }
         }
     }
