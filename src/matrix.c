@@ -120,7 +120,7 @@ int Multiplication(int** M, int** N, int** A, int* D){
     // Potential Cases when M and N are NOT compatible for matrix multiplication, but we try anyway.
     else {
         // If A has enough space or dimension to hold the result of multiplication. 
-       if ((yDimensionA >= min(yDimensionM, yDimensionN)) && (xDimensionA >= min(xDimensionM, xDimensionN))) {
+       if ((yDimensionA >= yDimensionM) && (xDimensionA >= xDimensionN)) {
         return -1;
        }
        // If A does not have enough space or dimension.
